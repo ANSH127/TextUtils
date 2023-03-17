@@ -1,39 +1,12 @@
-import React,{useState} from "react";
+import React from "react";
 
-export default function About() {
-    const [mystyle,setmystyle]=useState(
-        {
-            color:'black',
-            backgroundColor:'white'
-        }
-
-    );
-    const [btnText, setbtnText] = useState("Enable Dark mode")
-    const toggleStyle=()=>{
-        if (mystyle.color==='white') {
-            setmystyle(
-                {
-                    color:'black',
-                    backgroundColor:'white'
-                }
-
-            )
-            setbtnText('Enable Dark Mode')
-            
-        }
-        else{
-            setmystyle({
-                color:'white',
-                backgroundColor:'black'
-            })
-            setbtnText('Enable Light Mode')
-
-        }
-    }
+export default function About(props) {
+    
+    
 
     
   return (
-    <div className="container" style={mystyle}>
+    <div className="container" style={props.mystyle}>
         <h1 className="my-2 mx-1">About Us</h1>
       <div className="accordion" id="accordionExample">
         <div className="accordion-item">
@@ -45,9 +18,9 @@ export default function About() {
               data-bs-target="#collapseOne"
               aria-expanded="true"
               aria-controls="collapseOne"
-              style={mystyle}
+              style={props.mystyle}
             >
-              Accordion Item #1
+             <strong> Analyze Your text</strong>
             </button>
           </h2>
           <div
@@ -56,7 +29,7 @@ export default function About() {
             aria-labelledby="headingOne"
             data-bs-parent="#accordionExample"
           >
-            <div className="accordion-body" style={mystyle}>
+            <div className="accordion-body" style={props.mystyle}>
               <strong>This is the first item's accordion body.</strong> It is
               shown by default, until the collapse plugin adds the appropriate
               classes that we use to style each element. These classes control
@@ -77,9 +50,9 @@ export default function About() {
               data-bs-target="#collapseTwo"
               aria-expanded="false"
               aria-controls="collapseTwo"
-              style={mystyle}
+              style={props.mystyle}
             >
-              Accordion Item #2
+              <strong>Free to use</strong>
             </button>
           </h2>
           <div
@@ -88,7 +61,7 @@ export default function About() {
             aria-labelledby="headingTwo"
             data-bs-parent="#accordionExample"
           >
-            <div className="accordion-body" style={mystyle}>
+            <div className="accordion-body" style={props.mystyle}>
               <strong>This is the second item's accordion body.</strong> It is
               hidden by default, until the collapse plugin adds the appropriate
               classes that we use to style each element. These classes control
@@ -109,9 +82,9 @@ export default function About() {
               data-bs-target="#collapseThree"
               aria-expanded="false"
               aria-controls="collapseThree"
-              style={mystyle}
+              style={props.mystyle}
             >
-              Accordion Item #3
+             <strong> Browser Compatible</strong>
             </button>
           </h2>
           <div
@@ -120,7 +93,7 @@ export default function About() {
             aria-labelledby="headingThree"
             data-bs-parent="#accordionExample"
           >
-            <div className="accordion-body" style={mystyle}>
+            <div className="accordion-body" style={props.mystyle}>
               <strong>This is the third item's accordion body.</strong> It is
               hidden by default, until the collapse plugin adds the appropriate
               classes that we use to style each element. These classes control
@@ -133,9 +106,7 @@ export default function About() {
           </div>
         </div>
       </div>
-      <div className="container my-3">
-      <button type="button" onClick={toggleStyle} className="btn btn-info">{btnText}</button>
-      </div>
+      
     </div>
   );
 }

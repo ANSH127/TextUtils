@@ -35,15 +35,22 @@ export default function TextForm (props) {
 
         
     }
+    const handleCpyClick=()=>{
+        
+        navigator.clipboard.writeText(text)
+        
+        props.showAlert("Text Copied!","success")
+
+    }
     const [text,setText]=useState('');
     // text="new text" //wrong way to change the state
     // setText("new text"); //Correct way to change the state
 
-    let val=text.split(' ')
+    let val=text.split(/\s+/)
     // console.log(val)
     let len=0
     val.forEach(element => {
-        console.log(element.length)
+        // console.log(element.length)
         if (element.length>0) {
             len=len+1;
         }
@@ -61,10 +68,11 @@ export default function TextForm (props) {
         <div className="mb-3">
         <textarea className="form-control" value={text} onChange={handleOnChange} style={{backgroundColor:props.mode==='dark'?'black':'white',color:props.mode==='dark'?'white':'black'}} id="myBox" rows="8"></textarea>
         </div>
-    <button className=" mx-2 btn btn-primary" onClick={handleUpClick}>Convert to uppercase</button>
-    <button className="btn btn-primary mx-2 my-2" onClick={handleLowClick}>Convert to lowercase</button>
-    <button className="btn btn-primary mx-2 my-2" onClick={handleExtraSpaceClick}>Remove ExtraSpaces</button>
-    <button className="btn btn-primary mx-2 my-2" onClick={handleClrClick}>Clear</button>
+    <button disabled={text.length===0} className=" mx-2 btn btn-primary" onClick={handleUpClick}>Convert to uppercase</button>
+    <button disabled={text.length===0} className="btn btn-primary mx-2 my-2" onClick={handleLowClick}>Convert to lowercase</button>
+    <button disabled={text.length===0} className="btn btn-primary mx-2 my-2" onClick={handleExtraSpaceClick}>Remove ExtraSpaces</button>
+    <button disabled={text.length===0} className="btn btn-primary mx-2 my-2" onClick={handleCpyClick}>Copy Text</button>
+    <button disabled={text.length===0} className="btn btn-primary mx-2 my-2" onClick={handleClrClick}>Clear</button>
     
 
     </div>
@@ -72,7 +80,7 @@ export default function TextForm (props) {
         <h2>Your Text Summary</h2>
 
         <p>{len} words and {text.length} characters</p>
-        <p>{0.008*text.split(" ").length}Minutes read</p>
+        <p>{0.008*len} Minutes read</p>
     </div>
     </>
   )

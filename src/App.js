@@ -19,6 +19,15 @@ import {
 function App() {
   const [Mode, setMode] = useState('light') // weather the dark mode is enabled or not
   const [alert, setAlert] = useState(null);
+  const [aboutstyle,setaboutstyle]=useState(
+    {
+        color:'black',
+        backgroundColor:'white'
+    }
+
+);
+
+
   const showAlert =(message,type)=>{
     setAlert(
       {
@@ -38,6 +47,14 @@ function App() {
       document.body.style.backgroundColor='black';
       showAlert("Dark mode has been enabled","success")
       // document.title='TextUtils - Dark Mode';
+      setaboutstyle(
+        {
+            color:'white',
+            backgroundColor:'black'
+        }
+
+    )
+    
       
     }
     else{
@@ -45,6 +62,14 @@ function App() {
       document.body.style.backgroundColor='white';
       showAlert("Light mode has been enabled","success")
       // document.title='TextUtils - Home';
+      setaboutstyle(
+        {
+            color:'black',
+            backgroundColor:'white'
+        }
+
+    )
+    
 
 
 
@@ -60,7 +85,7 @@ function App() {
       <div className="container my-3">
       <Routes>
       <Route exact path='/' element={<TextForm showAlert={showAlert} heading="Enter the text to analyze below" mode={Mode}/>} />
-      <Route exact path="/about" element={<About />} />
+      <Route exact path="/about" element={<About mystyle={aboutstyle} />} />
           
       
       </Routes>
